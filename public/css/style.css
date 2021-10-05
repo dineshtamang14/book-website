@@ -1,0 +1,23 @@
+body {
+    background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
+    height: 100vh;
+}
+
+.red {
+    border: 1px solid red;
+}
+
+.green {
+    border: 1px solid green;
+}
+
+.login-left {
+    background-image: url("../images/background.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.05);
+    opacity: 0.9;
+    height: 600px;
+    border-radius: 3px;
+}
