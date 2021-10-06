@@ -1,44 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Login page</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-</head>
-<body>
-<div class="container">
-    <div class="container">
-        <div class="row mt-5">
-            <div class="col-7 login-left">
-            </div>
-            <div class="col-5 mt-2">
-                <form method="POST" action="/login">
-                    <div class="form-group">
-                        <label for="email">Email address:</label>
-                        <input type="email" class="form-control" id="email" name="email"  placeholder="Enter email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password:</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Log in</button>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Login</title>
+        <meta name="description" content="">
+        <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../css/style.css">
+    </head>
+    <body>
+        <div class="hero">
+            <div class="form-box">
+                <div class="button-box">
+                    <div id="btn"></div>
+                    <button type="button" class="toggle-btn" onclick="login()">Login</button>
+                    <button type="button" class="toggle-btn" onclick="signUp()">Register</button>
+                </div>
+                <div class="social-icons">
+                    <img src="https://img.icons8.com/fluency/48/000000/facebook-new.png"/>
+                    <img src="https://img.icons8.com/color/48/000000/google-logo.png"/>
+                    <img src="https://img.icons8.com/fluency/50/000000/linkedin.png"/>
+                </div>
+                <form action="/" class="input-group" id="login" method="POST">
+                    <input type="text" name="" class="input-field" placeholder="username or email" autocomplete="off" required>
+                    <input type="password" name="" class="input-field" placeholder="Enter password" autocomplete="off" required>
+                    <input type="checkbox" name="" class="check-box"><span>Remember me</span>
+                    <button type="submit" class="submit-btn">Login</button>
                 </form>
 
-                <hr>
-                <div>
-                    If you haven't had an account. <a href="/register">Create a new account</a>.
-                </div>
-                <div>
-                    Return to <a href="/">Home Page</a>
-                </div>
+                <form action="#" class="input-group" name="myForm" id="sign-up" onsubmit="return validateForm()" method="POST">
+                    <div class="formdesign" id="name">
+                        <input type="text" name="fname" class="input-field input" placeholder="user name" autocomplete="off" required>
+                        <p class="formerror" style="color: red; font-size: 10px;"></p>
+                    </div>
+                    <div class="formdesign" id="email">
+                        <input type="email" name="femail" id="email" class="input-field input" placeholder="Email id" autocomplete="off" required>
+                        <p class="formerror" style="color: red; font-size: 10px;"></p>
+                    </div>
+                    <div class="formdesign" id="pass">
+                        <input type="password" name="fpass" class="input-field input" placeholder="Enter password" autocomplete="off" required>
+                        <p class="formerror" style="color: red; font-size: 10px;"></p>
+                    </div>
+                    <div class="formdesign" id="cpass">
+                        <input type="password" name="fcpass" class="input-field input" placeholder="confirm password" autocomplete="off" required>
+                        <p class="formerror" style="color: red; font-size: 10px;"></p>
+                    </div>
+                    <input type="checkbox" name="" class="check-box" required><span>agree to terms & conditions</span>
+                    <button type="submit" class="submit-btn signup-btn">sign up</button>
+                </form>
             </div>
         </div>
-    </div>
-</div>
-</body>
+        <script src="../script.js" type="text/javascript"></script>
+    </body>
 </html>

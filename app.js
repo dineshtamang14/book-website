@@ -40,9 +40,6 @@ app.get("/", function(req, res){
     res.render("login");
 });
 
-app.get("/register", function(req, res){
-    res.render("register");
-});
 
 
 const port = process.env.PORT || 3000;
