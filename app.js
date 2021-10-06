@@ -40,7 +40,9 @@ app.get("/", function(req, res){
     res.render("login");
 });
 
-
+app.get("/store", function(req, res){
+    res.render("store");
+})
 
 const port = process.env.PORT || 3000;
 app.listen(port, ()=>{

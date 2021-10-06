@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
 
 :root{
-    --green:#27ae60;
+    --green:#1C0C5B;
     --dark-color:#219150;
     --black:#444;
     --light-color:#666;
@@ -285,7 +285,7 @@ section{
 }
 
 .home{
-    background: url(../image/banner-bg.jpg) no-repeat;
+    background: url(../images/banner-bg.jpg) no-repeat;
     background-size: cover;
     background-position: center;
 }
@@ -453,7 +453,7 @@ section{
 }
 
 .newsletter{
-    background:url(../image/letter-bg.jpg) no-repeat;
+    background:url(../images/letter-bg.jpg) no-repeat;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -726,14 +726,6 @@ section{
 .loader-container img{
     height:10rem;
 }
-
-
-
-
-
-
-
-
 
 
 /* media queries  */
