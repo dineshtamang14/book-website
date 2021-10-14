@@ -20,7 +20,7 @@ router.get("/logout", function (req, res) {
 router.post("/login", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
-  var sql = "SELECT * FROM user_profils WHERE name =? AND password =?";
+  var sql = "SELECT * FROM user_profiles WHERE name =? AND password =?";
   db.connection.query(sql, [username, password], function (err, data) {
     if(!err){
       res.redirect("/store");
@@ -33,7 +33,7 @@ router.post("/register", (req, res)=>{
   const email = req.body.email;
   const password = req.body.password;
     db.connection.query(
-      "INSERT INTO user_profils(name, email, password) VALUES(?, ?, ?)",
+      "INSERT INTO user_profiles(name, email, password) VALUES(?, ?, ?)",
       [username, email, password],
       (err, response) => {
         if (!err) {
