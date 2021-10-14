@@ -1,5 +1,6 @@
 const router = require("express").Router();
-const db = require("../dbconnection/db")
+const db = require("../dbconnection/db");
+// const bcrypt = require("bcryptjs");
 
 
 router.get("/", (req, res)=>{
@@ -20,8 +21,9 @@ router.get("/logout", function (req, res) {
 router.post("/login", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
-  var sql = "SELECT * FROM user_profiles WHERE name =? AND password =?";
+  const sql = "SELECT * FROM user_profiles WHERE name =? AND password =?";
   db.connection.query(sql, [username, password], function (err, data) {
+    // bcrypt.compare(password, data.password);
     if(data.length > 0){
       res.redirect("/store");
     } else {
@@ -34,6 +36,7 @@ router.post("/register", (req, res)=>{
   const username = req.body.username;
   const email = req.body.email;
   const password = req.body.password;
+  // const hashedPassword = bcrypt.hashSync(password, 8);
     db.connection.query(
       "INSERT INTO user_profiles(name, email, password) VALUES(?, ?, ?)",
       [username, email, password],
