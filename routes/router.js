@@ -22,7 +22,7 @@ router.post("/login", (req, res) => {
   const password = req.body.password;
   var sql = "SELECT * FROM user_profiles WHERE name =? AND password =?";
   db.connection.query(sql, [username, password], function (err, data) {
-    if(!err){
+    if(data.length > 0){
       res.redirect("/store");
     }
   });
