@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <p><%=(typeof alertMsg!='undefined' )? alertMsg:''%></p>
+        <p style="color: red; font-weight: bolder;"><%=(typeof alertMsg!='undefined' )? alertMsg:''%></p>
         <form action="/login" class="form" id="login" method="post">
             <h1 class="form__title">Login</h1>
             <div class="form__message form__message--error"></div>
@@ -28,7 +28,7 @@
                 <a class="form__link" href="./" id="linkCreateAccount">Don't have an account? Create account</a>
             </p>
         </form>
-        <p><%=(typeof alertMsg!='undefined' )? alertMsg:''%></p>
+        <p style="color: red; font-weight: bolder;"><%=(typeof Msg!='undefined' )? Msg:''%></p>
         <form action="/register" method="post" class="form form--hidden" id="createAccount">
             <h1 class="form__title">Create Account</h1>
             <div class="form__message form__message--error"></div>

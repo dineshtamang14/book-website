@@ -24,6 +24,8 @@ router.post("/login", (req, res) => {
   db.connection.query(sql, [username, password], function (err, data) {
     if(data.length > 0){
       res.redirect("/store");
+    } else {
+      res.render("login", { alertMsg: "Wrong Credential"});
     }
   });
 });
