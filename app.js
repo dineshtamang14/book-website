@@ -1,50 +1,41 @@
-require('dotenv').config();
+require("dotenv").config();
 const express = require("express");
-const bodyParser = require("body-parser");
 const ejs = require("ejs");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 const session = require("express-session");
-const mysql = require("mysql2");
-const app = express();
+const passport = require("passport");
+const router = require("./routes/router");
 
-app.set("view engine", "ejs");
-app.use(express.static("public"));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+let app = express();
 
-app.use(session({
-    secret: process.env.SECRECT,
+//use cookie parser
+app.use(cookieParser("secret"));
+
+//config session
+app.use(
+  session({
+    secret: "secret",
     resave: true,
     saveUninitialized: false,
     cookie: {
-        maxAge: 1000 * 60 * 60 * 24 // 86400000 1 day
-    }
-}));
+      maxAge: 1000 * 60 * 60 * 24, // 86400000 1 day
+    },
+  })
+);
 
-// database connection
-const connection = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME
-});
+// Enable body parser post data
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
+app.set("view engine", "ejs");
 
-connection.connect(function(err){
-    if(err){
-        throw err;
-    } else {
-        console.log("connected to database");
-    }
-});
 
-app.get("/", function(req, res){
-    res.render("login");
-});
+//Config passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.get("/store", function(req, res){
-    res.render("store");
-})
+app.use("/", router);
 
-const port = process.env.PORT || 3000;
-app.listen(port, ()=>{
-    console.log(`server is running on port ${port}`);
-});
+let port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Server is running on port ${port}!`));
