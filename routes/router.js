@@ -12,6 +12,11 @@ router.get("/store", (req, res)=>{
   }
 });
 
+router.get("/logout", function (req, res) {
+  req.logout();
+  res.redirect("/");
+});
+
 router.post("/login", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
