@@ -1,41 +1,44 @@
-require("dotenv").config();
-const express = require("express");
-const ejs = require("ejs");
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
-const session = require("express-session");
-const passport = require("passport");
-const router = require("./routes/router");
+require('dotenv').config();
+import express from "express";
+import configViewEngine from "./configs/viewEngine";
+import initWebRoutes from "./routes/web";
+import bodyParser from "body-parser";
+import cookieParser from 'cookie-parser';
+import session from "express-session";
+import connectFlash from "connect-flash";
+import passport from "passport";
 
 let app = express();
 
 //use cookie parser
-app.use(cookieParser("secret"));
+app.use(cookieParser('secret'));
 
 //config session
-app.use(
-  session({
-    secret: "secret",
+app.use(session({
+    secret: 'secret',
     resave: true,
     saveUninitialized: false,
     cookie: {
-      maxAge: 1000 * 60 * 60 * 24, // 86400000 1 day
-    },
-  })
-);
+        maxAge: 1000 * 60 * 60 * 24 // 86400000 1 day
+    }
+}));
 
 // Enable body parser post data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("public"));
-app.set("view engine", "ejs");
 
+//Config view engine
+configViewEngine(app);
+
+//Enable flash message
+app.use(connectFlash());
 
 //Config passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use("/", router);
+// init all web routes
+initWebRoutes(app);
 
 let port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Server is running on port ${port}!`));
+app.listen(port, () => console.log(`Building a login system with NodeJS is running on port ${port}!`));
