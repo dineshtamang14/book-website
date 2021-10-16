@@ -1,8 +1,8 @@
-import registerService from "./../services/registerService";
-import { validationResult } from "express-validator";
+const registerService = require("./../services/registerService");
+const {validationResult} = require("express-validator");
 
 let getPageRegister = (req, res) => {
-    return res.render("register.ejs", {
+    return res.render("register", {
         errors: req.flash("errors")
     });
 };
@@ -22,7 +22,7 @@ let createNewUser = async (req, res) => {
 
     //create a new user
     let newUser = {
-        fullname: req.body.fullName,
+        username: req.body.username,
         email: req.body.email,
         password: req.body.password
     };

@@ -1,10 +1,10 @@
-import express from "express";
-import homePageController from "../controllers/homePageController";
-import registerController from "../controllers/registerController";
-import loginController from "../controllers/loginController";
-import auth from "../validation/authValidation";
-import passport from "passport";
-import initPassportLocal from "../controllers/passportLocalController";
+const express = require("express");
+const homePageController = require("../controllers/homePageController");
+const registerController = require("../controllers/registerController");
+const loginController = require("../controllers/loginController");
+const auth = require("../validation/authValidation");
+const passport = require("passport");
+const initPassportLocal = require("../controllers/passportLocalController");
 
 // Init all passport
 initPassportLocal();
