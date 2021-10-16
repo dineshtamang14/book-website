@@ -1,5 +1,6 @@
 const DBConnection = require("../configs/DBConnection");
 const bcrypt = require("bcryptjs");
+const passport = require("passport");
 
 let handleLogin = (email, password) => {
     return new Promise(async (resolve, reject) => {
@@ -9,6 +10,9 @@ let handleLogin = (email, password) => {
             //compare password
             await bcrypt.compare(password, user.password).then((isMatch) => {
                 if (isMatch) {
+                    passport.authenticate("local")(req, res, function () {
+                      res.redirect("/");
+                    });
                     resolve(true);
                 } else {
                     reject(`The password that you've entered is incorrect`);
