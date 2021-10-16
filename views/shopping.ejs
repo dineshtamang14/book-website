@@ -58,13 +58,13 @@
                                                         <span class="badge" style="font-size: 2rem;"><%= product.qty %></span>
                                                         <strong style="font-size: 2rem;"><%= product.item.title %></strong>
                                                         <span class="label label-success" style="font-size: 2rem;">$<%= product.price %></span>
-                                                        <div class="btn-group">
+                                                        <!-- <div class="btn-group">
                                                             <button type="button" style="font-size: 2rem;" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span></button>
                                                             <ul class="dropdown-menu">
                                                                 <li><a href="#">Reduce by 1</a></li>
                                                                 <li><a href="#">Remove all</a></li>
                                                             </ul>
-                                                        </div>
+                                                        </div> -->
                                                     </li>
                         <% }); %>
                             </ul>
@@ -78,7 +78,7 @@
                     <hr>
                     <div class="row">
                         <div class="col-sm-6 col-md-offset-3 col-sm-offset-3">
-                            <button type="button" class="btn btn-success">Checkout</button>
+                            <button style="font-size: 2rem;" type="button" class="btn btn-success">Checkout</button>
                         </div>
                     </div>
         <% } else { %>
