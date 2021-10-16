@@ -9,7 +9,7 @@ let createNewUser = (data) => {
             reject(`This email "${data.email}" has already exist. Please choose an other email`);
         } else {
             // hash password
-            let salt = bcrypt.genSaltSync(10);
+            let salt = bcrypt.genSaltSync(8);
             let userItem = {
                 username: data.username,
                 email: data.email,
@@ -18,9 +18,9 @@ let createNewUser = (data) => {
 
             //create a new account
             DBConnection.query(
-              "INSERT INTO users (username, email, password) VALUES(?, ?, ?)",
+              "INSERT INTO users(username, email, password) VALUES(?, ?, ?)",
               [userItem.username, userItem.email, userItem.password],
-              function (err, rows) {
+              function (err) {
                 if (err) {
                   reject(false);
                 }
