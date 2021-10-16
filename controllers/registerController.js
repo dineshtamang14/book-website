@@ -1,4 +1,5 @@
 const registerService = require("./../services/registerService");
+const passport = require("passport");
 const {validationResult} = require("express-validator");
 
 let getPageRegister = (req, res) => {
@@ -28,7 +29,9 @@ let createNewUser = async (req, res) => {
     };
     try {
         await registerService.createNewUser(newUser);
-        return res.redirect("/login");
+        passport.authenticate("local")(req, res, function () {
+           res.redirect("/");
+         });
     } catch (err) {
         req.flash("errors", err);
         return res.redirect("/register");

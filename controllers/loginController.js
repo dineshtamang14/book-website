@@ -28,11 +28,11 @@ let handleLogin = async (req, res) => {
     }
 };
 
-let checkLoggedIn = (req, res, next) => {
+let checkLoggedIn = (req, res) => {
     if (!req.isAuthenticated()) {
         return res.redirect("/login");
     }
-    next();
+    res.render("store");
 };
 
 let checkLoggedOut = (req, res, next) => {
