@@ -7,7 +7,6 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const connectFlash = require("connect-flash");
 const passport = require("passport");
-
 const app = express();
 
 //use cookie parser
@@ -24,6 +23,12 @@ app.use(
     },
   })
 );
+
+app.use(function (req, res, next) {
+  res.locals.login = req.isAuthenticated();
+  res.locals.session = req.session;
+  next();
+});
 
 // Enable body parser post data
 app.use(bodyParser.json());

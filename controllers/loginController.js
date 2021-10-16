@@ -1,4 +1,5 @@
 const validationResult = require("express-validator");
+const session = require("passport");
 const loginService = require("../services/loginService");
 
 let getPageLogin = (req, res) => {
@@ -30,7 +31,7 @@ let handleLogin = async (req, res) => {
 
 let checkLoggedIn = (req, res) => {
     if (req.isAuthenticated()) {
-        res.render("store");
+        res.render("store", {total: session.cart.totalQty});
     } else {
         res.redirect("/login");
     }

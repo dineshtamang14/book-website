@@ -15,6 +15,7 @@ initPassportLocal();
 let router = express.Router();
 
 let initWebRoutes = (app) => {
+
   router.get("/add-to-cart/:id/:title/:price", (req, res) => {
     var productId = req.params.id;
     var productTitle = _.startCase(req.params.title);
