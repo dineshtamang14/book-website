@@ -15,7 +15,6 @@ initPassportLocal();
 let router = express.Router();
 
 let initWebRoutes = (app) => {
-
   router.get("/add-to-cart/:id/:title/:price", (req, res) => {
     var productId = req.params.id;
     var productTitle = _.startCase(req.params.title);
@@ -32,6 +31,18 @@ let initWebRoutes = (app) => {
     req.session.cart = cart;
     console.log(req.session.cart);
     res.redirect("/");
+  });
+
+  router.get("/shopping-cart", (req, res) => {
+    if (!req.session.cart) {
+      return res.render("shopping", { products: null });
+    }
+    var cart = new Cart(req.session.cart);
+    res.render("shopping", {
+      products: cart.generateArray(),
+      totalPrice: cart.totalPrice,
+    });
+    console.log(cart.generateArray());
   });
 
   router.get("/", loginController.checkLoggedIn);
