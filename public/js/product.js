@@ -135,15 +135,15 @@ const displayCart = () => {
     Object.values(cartItems).map((item) => {
       productsContainer.innerHTML += `
           <div class="product">
-            <i class="ion-icon fas fa-times-circle"></i>
+            <i class="ion-icon fas fa-times-circle delete-item"></i>
             <img src="../images/${item.tag}.png" />
             <span>${item.name}</span>
           </div>
             <div class="price">$${item.price}</div>
             <div class="quantity">
-                <i class="ion-icon fas fa-arrow-alt-circle-left"></i>
+                <i class="ion-icon fas fa-arrow-alt-circle-left decrease"></i>
                 <span>${item.inCart}</span>
-                <i class="ion-icon fas fa-arrow-alt-circle-right"></i>
+                <i class="ion-icon fas fa-arrow-alt-circle-right increase"></i>
             </div>
             <div class="total">
                 $${item.inCart * item.price}
@@ -153,8 +153,12 @@ const displayCart = () => {
 
     productsContainer.innerHTML += `
             <div class="basketTotalContainer">
-                <h4 class="basketTotalTitle">Total Price</h4>
-                <h4 class="basketTotal">$${Math.round(cartCost)},00</h4>
+              <h4 class="basketTotalTitle">Total Price</h4>
+              <form  action="/chekout" method="post">
+              <h4 name="totalPay" class="basketTotal">$${Math.round(cartCost)},00</h4>
+              <br>
+              <button class="btn btn-secondary btn-md btn-block" type="submit">Continue to checkout</button>
+              </form>
             </div>
         `;
   }
@@ -162,3 +166,10 @@ const displayCart = () => {
 
 oncartLoad();
 displayCart();
+
+const deleteCartItem = document.querySelectorAll(".delete-item");
+for (let i = 0; i < deleteCartItem.length; i++) {
+  deleteCartItem.addEventListener("click", () => {
+    console.log(deleteCartItem[i]);
+  });
+}
