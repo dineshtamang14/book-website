@@ -1,7 +1,13 @@
+require("dotenv").config();
 const validationResult = require("express-validator");
 const session = require("passport");
 const loginService = require("../services/loginService");
 const fs = require("fs");
+
+const stripePublicKey = process.env.STRIPE_PUBLIC_KEY;
+const stripeScretKey = process.env.STRIPE_SECRET_KEY;
+
+const stripe = require("stripe")(stripeScretKey);
 
 let getPageLogin = (req, res) => {
     return res.render("login.ejs", {
@@ -37,6 +43,7 @@ let checkLoggedIn = (req, res) => {
                 res.status(500).end();
                 } else {
                 res.render("store", {
+                    stripePublicKey: stripePublicKey,
                     items: JSON.parse(data)
                 });
                 }

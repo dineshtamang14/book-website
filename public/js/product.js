@@ -154,11 +154,12 @@ const displayCart = () => {
     productsContainer.innerHTML += `
             <div class="basketTotalContainer">
               <h4 class="basketTotalTitle">Total Price</h4>
-              <form  action="/chekout" method="post">
-              <h4 name="totalPay" class="basketTotal">$${Math.round(cartCost)},00</h4>
-              <br>
-              <button class="btn btn-secondary btn-md btn-block" type="submit">Continue to checkout</button>
-              </form>
+              <h4 name="totalPay" class="basketTotal">$${Math.round(
+                cartCost
+              )},00</h4>
+                <div id="checkout" class="btn btn-secondary btn-md btn">Continue to checkout</div>
+                <br>
+                <br>
             </div>
         `;
   }
@@ -167,9 +168,27 @@ const displayCart = () => {
 oncartLoad();
 displayCart();
 
-const deleteCartItem = document.querySelectorAll(".delete-item");
-for (let i = 0; i < deleteCartItem.length; i++) {
-  deleteCartItem.addEventListener("click", () => {
-    console.log(deleteCartItem[i]);
-  });
-}
+var stripe = Stripe(
+  "pk_test_51JiB7XSJjBncn0lk8wmSg4rJSBKKLk2FVidOk7gcKLN8Ysv1ioC7KTwklylcUWjMPmVpWOoV3zu8Sm89kIIGrxvx00GrVbESUd"
+);
+
+document.getElementById("checkout").addEventListener("click", ()=>{
+  stripe.redirectToCheckout({
+      lineItems: [
+        {
+          price: 'price_1JlsA4SJjBncn0lkMyssArcN', 
+          quantity: 1
+        }
+      ],
+      mode: 'subscription',
+      successUrl: '/',
+      cancelUrl: '/',
+    })
+    .then(function (result) {
+      if (result.error) {
+        var displayError = document.getElementById('error-message');
+        displayError.textContent = result.error.message;
+      }
+    });
+});
+

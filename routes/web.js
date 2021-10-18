@@ -7,10 +7,12 @@ const auth = require("../validation/authValidation");
 const passport = require("passport");
 const initPassportLocal = require("../controllers/passportLocalController");
 const Cart = require("../models/cart");
+const stripe = require("stripe");
 // const _ = require("lodash");
 
 // Init all passport
 initPassportLocal();
+
 
 let router = express.Router();
 
@@ -51,6 +53,8 @@ let initWebRoutes = (app) => {
     // });
     // console.log(cart.generateArray());
   });
+
+  router.get("/forgot", registerController.getPageForgot);
 
   router.get("/", loginController.checkLoggedIn);
   router.get(

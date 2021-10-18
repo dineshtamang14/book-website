@@ -9,9 +9,12 @@
     <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
+    <script>
+        const stripePublicKey = "<%= stripePublicKey %>";
+    </script>
+
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
     <!-- custom css file link  -->
     <link rel="stylesheet" href="/css/store.css">
 
@@ -794,11 +797,14 @@
     <!-- <div class="loader-container">
     <img src="../images/loader-img.gif" alt="">-->
     </div>
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
     <!-- custom js file link  -->
     <script src="/js/product.js" type="text/javascript"></script>
     <script src="/js/store.js" type="text/javascript"></script>
+    <script src="/js/product.js" type="text/javascript"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>

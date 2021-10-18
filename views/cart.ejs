@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
-
+    <script src="https://js.stripe.com/v3/"></script>
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="../css/store.css">
@@ -52,6 +52,7 @@
         </div>
 
     </header>
+    <div class="error-message" style="color: red;"></div>
     <div class="products-container">
         <div class="product-header">
             <h5 class="product-title">Product</h5>
@@ -65,7 +66,6 @@
         <br>
         <br>
     </div>
-    
     <script src="/js/product.js" type="text/javascript"></script>
     <!-- <script src="/js/cart.js" type="text/javascript"></script> -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

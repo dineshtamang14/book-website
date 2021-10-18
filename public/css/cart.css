@@ -14,11 +14,12 @@
 }
 
 .product-header {
+    height: 4rem;
     width: 100%;
     max-width: 650px;
     display: flex;
     justify-content: flex-start;
-    border-bottom: 4px solid lightgray;
+    /* border-bottom: 4px solid lightgray; */
     margin: 0 auto;
 }
 
@@ -44,7 +45,7 @@
 
 .price {
     width: 15%;
-    border-bottom: 4px solid lightgray;
+    /* border-bottom: 4px solid lightgray; */
     display: flex;
     align-items: center;
     align-content: center;
@@ -52,7 +53,7 @@
 
 .quantity {
     width: 30%;
-    border-bottom: 4px solid lightgray;
+    /* border-bottom: 4px solid lightgray; */
     display: flex;
     align-items: center;
     margin: 0 auto;
@@ -60,7 +61,7 @@
 
 .total {
     width: 10%;
-    border-bottom: 4px solid lightgray;
+    /* border-bottom: 4px solid lightgray; */
     display: flex;
     align-items: center;
     margin: 0 auto;
@@ -68,7 +69,7 @@
 
 .product {
     width: 45%;
-    border-bottom: 4px solid lightgray;
+    /* border-bottom: 4px solid lightgray; */
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -104,4 +105,10 @@
 
 .basketTotal {
     width: 10%;
+}
+
+.btn {
+    position: relative;
+    top: 5rem;
+    left: 4rem;
 }

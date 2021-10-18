@@ -8,6 +8,12 @@ let getPageRegister = (req, res) => {
     });
 };
 
+let getPageForgot = (req, res) => {
+  return res.render("forgot", {
+    errors: req.flash("errors"),
+  });
+};
+
 let createNewUser = async (req, res) => {
     //validate required fields
     let errorsArr = [];
@@ -38,6 +44,7 @@ let createNewUser = async (req, res) => {
     }
 };
 module.exports = {
-    getPageRegister: getPageRegister,
-    createNewUser: createNewUser
+  getPageRegister: getPageRegister,
+  createNewUser: createNewUser,
+  getPageForgot: getPageForgot
 };
