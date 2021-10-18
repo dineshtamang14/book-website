@@ -7,7 +7,7 @@ const auth = require("../validation/authValidation");
 const passport = require("passport");
 const initPassportLocal = require("../controllers/passportLocalController");
 const Cart = require("../models/cart");
-const _ = require("lodash");
+// const _ = require("lodash");
 
 // Init all passport
 initPassportLocal();
