@@ -1,0 +1,30 @@
+{
+  "name": "dinesh",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "author": "Dinesh Tamang",
+  "license": "",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.2",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "express-validator": "^6.5.0",
+    "lodash": "^4.17.21",
+    "mysql2": "^2.1.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}

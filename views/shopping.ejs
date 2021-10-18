@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Shoping cart</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
+            <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+            
+            <!-- font awesome cdn link  -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" href="../css/store.css"">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+            integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header class="header">
+        
+            <div class="header-1">
+        
+                <a href="/" class="logo"> <i class="fas fa-book"></i> book for wise one </a>
+        
+                <form action="" class="search-form">
+                    <input type="search" name="" placeholder="search here..." id="search-box">
+                    <label for="search-box" class="fas fa-search"></label>
+                </form>
+        
+                <div class="icons">
+                    <div id="search-btn" class="fas fa-search"></div>
+                    <a href="/shopping-cart" class="icon-button fas fa-shopping-cart"><span class="icon-button__badge">
+                            3
+                        </span></a>
+                    <div id="login-btn" class="fas fa-user"></div>
+                    <a href="/logout" class="fas fa-sign-out-alt"></a>
+                </div>
+        
+            </div>
+        
+        </header>
+        <% if(products != null) { %>
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+                    <ul class="list-group">
+                        <% products.forEach((product)=> { %>
+                                                    <li class="list-group-item">
+                                                        <span class="badge" style="font-size: 2rem;"><%= product.qty %></span>
+                                                        <strong style="font-size: 2rem;"><%= product.item.title %></strong>
+                                                        <span class="label label-success" style="font-size: 2rem;">$<%= product.price %></span>
+                                                        <!-- <div class="btn-group">
+                                                            <button type="button" style="font-size: 2rem;" class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span></button>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a href="#">Reduce by 1</a></li>
+                                                                <li><a href="#">Remove all</a></li>
+                                                            </ul>
+                                                        </div> -->
+                                                    </li>
+                        <% }); %>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+                            <strong style="font-size: 2rem;">Total:<%= totalPrice %></strong>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-6 col-md-offset-3 col-sm-offset-3">
+                            <button style="font-size: 2rem;" type="button" class="btn btn-success">Checkout</button>
+                        </div>
+                    </div>
+        <% } else { %>
+        <div class="row">
+            <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+                <h2>No Items in Cart</h2>
+            </div>
+        </div>
+        <% } %>
+    </body>
+</html>
