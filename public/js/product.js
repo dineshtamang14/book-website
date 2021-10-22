@@ -157,9 +157,6 @@ const displayCart = () => {
               <h4 name="totalPay" class="basketTotal">$${Math.round(
                 cartCost
               )},00</h4>
-                <div id="checkout" class="btn btn-secondary btn-md btn">Continue to checkout</div>
-                <br>
-                <br>
             </div>
         `;
   }
@@ -168,27 +165,27 @@ const displayCart = () => {
 oncartLoad();
 displayCart();
 
-var stripe = Stripe(
-  "pk_test_51JiB7XSJjBncn0lk8wmSg4rJSBKKLk2FVidOk7gcKLN8Ysv1ioC7KTwklylcUWjMPmVpWOoV3zu8Sm89kIIGrxvx00GrVbESUd"
-);
+// var stripe = Stripe(
+//   "pk_test_51JiB7XSJjBncn0lk8wmSg4rJSBKKLk2FVidOk7gcKLN8Ysv1ioC7KTwklylcUWjMPmVpWOoV3zu8Sm89kIIGrxvx00GrVbESUd"
+// );
 
-document.getElementById("checkout").addEventListener("click", ()=>{
-  stripe.redirectToCheckout({
-      lineItems: [
-        {
-          price: 'price_1JlsA4SJjBncn0lkMyssArcN', 
-          quantity: 1
-        }
-      ],
-      mode: 'subscription',
-      successUrl: '/',
-      cancelUrl: '/',
-    })
-    .then(function (result) {
-      if (result.error) {
-        var displayError = document.getElementById('error-message');
-        displayError.textContent = result.error.message;
-      }
-    });
-});
+// document.getElementById("checkout").addEventListener("click", ()=>{
+//   stripe.redirectToCheckout({
+//       lineItems: [
+//         {
+//           price: 'price_1JlsA4SJjBncn0lkMyssArcN', 
+//           quantity: 1
+//         }
+//       ],
+//       mode: 'subscription',
+//       successUrl: '/',
+//       cancelUrl: '/',
+//     })
+//     .then(function (result) {
+//       if (result.error) {
+//         var displayError = document.getElementById('error-message');
+//         displayError.textContent = result.error.message;
+//       }
+//     });
+// });
 

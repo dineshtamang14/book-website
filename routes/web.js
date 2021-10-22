@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const session = require("express-session");
 const homePageController = require("../controllers/homePageController");
@@ -7,8 +8,11 @@ const auth = require("../validation/authValidation");
 const passport = require("passport");
 const initPassportLocal = require("../controllers/passportLocalController");
 const Cart = require("../models/cart");
-const stripe = require("stripe");
 // const _ = require("lodash");
+const stripePublicKey = process.env.STRIPE_PUBLIC_KEY;
+const stripeScretKey = process.env.STRIPE_SECRET_KEY;
+
+const stripe = require("stripe")(stripeScretKey);
 
 // Init all passport
 initPassportLocal();
@@ -41,17 +45,9 @@ let initWebRoutes = (app) => {
   // });
 
   router.get("/shopping-cart", (req, res) => {
-    res.render("cart");
-
-    // if (!req.session.cart) {
-    //   return res.render("shopping", { products: null });
-    // }
-    // var cart = new Cart(req.session.cart);
-    // res.render("shopping", {
-    //   products: cart.generateArray(),
-    //   totalPrice: cart.totalPrice,
-    // });
-    // console.log(cart.generateArray());
+    res.render("cart", {
+      key: stripePublicKey,
+    });
   });
 
   router.get("/forgot", registerController.getPageForgot);
