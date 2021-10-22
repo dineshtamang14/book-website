@@ -135,7 +135,7 @@ const displayCart = () => {
     Object.values(cartItems).map((item) => {
       productsContainer.innerHTML += `
           <div class="product">
-            <i class="ion-icon fas fa-times-circle delete-item"></i>
+            <i class="ion-icon fas fa-times-circle delete-item delete-product"></i>
             <img src="../images/${item.tag}.png" />
             <span>${item.name}</span>
           </div>
@@ -165,27 +165,14 @@ const displayCart = () => {
 oncartLoad();
 displayCart();
 
-// var stripe = Stripe(
-//   "pk_test_51JiB7XSJjBncn0lk8wmSg4rJSBKKLk2FVidOk7gcKLN8Ysv1ioC7KTwklylcUWjMPmVpWOoV3zu8Sm89kIIGrxvx00GrVbESUd"
-// );
-
-// document.getElementById("checkout").addEventListener("click", ()=>{
-//   stripe.redirectToCheckout({
-//       lineItems: [
-//         {
-//           price: 'price_1JlsA4SJjBncn0lkMyssArcN', 
-//           quantity: 1
-//         }
-//       ],
-//       mode: 'subscription',
-//       successUrl: '/',
-//       cancelUrl: '/',
-//     })
-//     .then(function (result) {
-//       if (result.error) {
-//         var displayError = document.getElementById('error-message');
-//         displayError.textContent = result.error.message;
-//       }
-//     });
-// });
+var deleteProducts = document.querySelectorAll(".delete-product");
+console.log(deleteProducts);
+for(var i = 0; i<deleteProducts.length; i++){
+  deleteProducts[i].addEventListener("click", (event)=>{
+    var buttonClicked = event.target;
+    buttonClicked.parentElement.parentElement.remove();
+    let productNumbers = parseInt(localStorage.getItem("cartNumber"));
+    localStorage.setItem("cartNumber", productNumbers - 1);
+  })
+}
 
