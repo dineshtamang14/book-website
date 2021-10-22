@@ -8,7 +8,6 @@ const auth = require("../validation/authValidation");
 const passport = require("passport");
 const initPassportLocal = require("../controllers/passportLocalController");
 const Cart = require("../models/cart");
-// const _ = require("lodash");
 const stripePublicKey = process.env.STRIPE_PUBLIC_KEY;
 const stripeScretKey = process.env.STRIPE_SECRET_KEY;
 
@@ -26,29 +25,41 @@ let initWebRoutes = (app) => {
       res.redirect("/login");
     });
 
-  // router.get("/add-to-cart/:id/:title/:price", (req, res) => {
-  //   var productId = req.params.id;
-  //   var productTitle = _.startCase(req.params.title);
-  //   var productPrice = _.parseInt(req.params.price);
-  //   var cart = new Cart(req.session.cart ? req.session.cart : {});
-
-  //   var product = {
-  //     id: productId,
-  //     title: productTitle,
-  //     price: productPrice,
-  //   };
-
-  //   cart.add(product, product.id);
-  //   req.session.cart = cart;
-  //   console.log(req.session.cart);
-  //   res.redirect("/");
-  // });
-
   router.get("/shopping-cart", (req, res) => {
     res.render("cart", {
       key: stripePublicKey,
     });
   });
+
+  router.post("/payment", (req, res)=> {
+    stripe.customers
+      .create({
+        email: req.body.stripeEmail,
+        source: req.body.stripeToken,
+        name: "Books",
+        address: {
+          line1: "TC 9/4 Old MES colony",
+          postal_code: "110092",
+          city: "Mumbai",
+          state: "Maharashtra",
+          country: "India",
+        },
+      })
+      .then((customer) => {
+        return stripe.charges.create({
+          amount: 7000, // Charing Rs 25
+          description: "Books",
+          currency: "INR",
+          customer: customer.id,
+        });
+      })
+      .then((charge) => {
+        res.redirect("/"); // If no error occurs
+      })
+      .catch((err) => {
+        res.send(err); // If some error occurs
+      });
+  }); 
 
   router.get("/forgot", registerController.getPageForgot);
 
