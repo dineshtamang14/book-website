@@ -36,16 +36,7 @@ let handleLogin = async (req, res) => {
 
 let checkLoggedIn = (req, res) => {
     if (req.isAuthenticated()) {
-        fs.readFile("items.json", (err, data)=>{
-            if(err){
-                res.status(500).end();
-                } else {
-                res.render("store", {
-                    stripePublicKey: stripePublicKey,
-                    items: JSON.parse(data)
-                });
-                }
-            });
+        res.render("store");
     } else {
         res.redirect("/login");
     }  

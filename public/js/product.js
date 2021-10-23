@@ -1,81 +1,92 @@
 // add to cart features
 let products = [
   {
-    name: "Empire's Daughter",
-    tag: "book-1",
-    price: 10.99,
-    inCart: 0,
+    "id": 1,
+    "name": "Empire's Daughter",
+   "price": 1099,
+    "imgName": "../images/book-1.png"
   },
   {
-    name: "sign of the Concave Staircase",
-    tag: "book-2",
-    price: 4.99,
-    inCart: 0,
+    "id": 2,
+    "name": "sign of the Concave",
+    "price": 499,
+    "imgName": "../images/book-2.png"
   },
   {
-    name: "Built for vice",
-    tag: "book-3",
-    price: 6.99,
-    inCart: 0,
+    "id": 3,
+    "name": "Built for vice",
+    "price": 699,
+    "imgName": "../images/book-3.png"
   },
-  {
-    name: "The Serpent in the Air",
-    tag: "book-4",
-    price: 12.99,
-    inCart: 0,
+    {
+    "id": 4,
+    "name": "The Serpent in the Air",
+    "price": 1299,
+    "imgName": "../images/book-4.png"
   },
-  {
-    name: "The Holiday Bride",
-    tag: "book-5",
-    price: 5.99,
-    inCart: 0,
+    {
+    "id": 5,
+    "name": "The Holiday Bride",
+    "price": 699,
+    "imgName": "../images/book-5.png"
   },
-  {
-    name: "The Shadow in the Dark City",
-    tag: "book-6",
-    price: 5.99,
-    inCart: 0,
+      {
+    "id": 6,
+    "name": "The Shadow in the Dark City",
+    "price": 599,
+    "imgName": "../images/book-6.png"
   },
-  {
-    name: "Mercury's Gold",
-    tag: "book-7",
-    price: 1.99,
-    inCart: 0,
+      {
+    "id": 7,
+    "name": "Mercury's Gold",
+    "price": 699,
+    "imgName": "../images/book-7.png"
   },
-  {
-    name: "Case of the Invisible Corgi",
-    tag: "book-8",
-    price: 3.99,
-    inCart: 0,
+      {
+    "id": 8,
+    "name": "Case of the Invisible Corgi",
+    "price": 399,
+    "imgName": "../images/book-8.png"
   },
-  {
-    name: "The Crimson Rose",
-    tag: "book-9",
-    price: 3.99,
-    inCart: 0,
+        {
+    "id": 9,
+    "name": "The Crimson Rose",
+    "price": 399,
+    "imgName": "../images/book-9.png"
   },
-  {
-    name: "Inferno Hearts",
-    tag: "book-10",
-    price: 3.99,
-    inCart: 0,
-  },
+        {
+    "id": 10,
+    "name": "Inferno Hearts",
+    "price": 499,
+    "imgName": "../images/book-10.png"
+  }
 ];
 
-const oncartLoad = () => {
-  let productNumbers = parseInt(localStorage.getItem("cartNumber"));
-  if (productNumbers) {
-    document.querySelector(".cart-no").textContent = productNumbers;
-  }
-};
+const productshere = document.querySelector(".products-here");
 
-let carts = document.querySelectorAll(".add-cart");
-for (let i = 0; i < carts.length; i++) {
-  carts[i].addEventListener("click", () => {
-    cartNumbers(products[i]);
-    totalCost(products[i]);
-  });
+function renderProducts(){
+  products.forEach((product)=>{
+    productshere.innerHTML += `
+    <div class="swiper-slide box" data-item-id="${product.id}">
+      <div class="icons">
+        <a href="#" class="fas fa-search"></a>
+        <a href="#" class="fas fa-heart"></a>
+        <a href="#" class="fas fa-eye"></a>
+      </div>
+      <div class="image">
+        <img src="${product.imgName}" alt="">
+      </div>
+      <div class="content">
+        <h3>${product.name}</h3>
+        <div class="price">${product.price} <span>$10.99</span></div>
+        <div class="btn add-cart" onClick="${product.id}">add to cart</div>
+      </div>
+    </div>
+    `
+  })
 }
+
+renderProducts();
 
 const cartNumbers = (product) => {
   let productNumbers = parseInt(localStorage.getItem("cartNumber"));
