@@ -63,6 +63,7 @@ let products = [
 ];
 
 const productshere = document.querySelector(".products-here");
+const cartItems = document.querySelector(".products");
 
 function renderProducts(){
   products.forEach((product)=>{
@@ -79,7 +80,7 @@ function renderProducts(){
       <div class="content">
         <h3>${product.name}</h3>
         <div class="price">${product.price} <span>$10.99</span></div>
-        <div class="btn add-cart" onClick="${product.id}">add to cart</div>
+        <div class="btn add-cart" onclick="addToCart(${product.id})">add to cart</div>
       </div>
     </div>
     `
@@ -88,102 +89,44 @@ function renderProducts(){
 
 renderProducts();
 
-const cartNumbers = (product) => {
-  let productNumbers = parseInt(localStorage.getItem("cartNumber"));
+let cart = [];
 
-  if (productNumbers) {
-    localStorage.setItem("cartNumber", productNumbers + 1);
-    document.querySelector(".cart-no").textContent = productNumbers + 1;
+function addToCart(id){
+  if (cart.some((item) => item.id === id)){
+    alert("product already in cart!");
   } else {
-    localStorage.setItem("cartNumber", 1);
-    document.querySelector(".cart-no").textContent = 1;
-  }
-  setItems(product);
-};
-
-const setItems = (product) => {
-  let cartItems = localStorage.getItem("productInCart");
-  cartItems = JSON.parse(cartItems);
-  if (cartItems != null) {
-    if (cartItems[product.tag] == undefined) {
-      cartItems = {
-        ...cartItems,
-        [product.tag]: product, //using rest operator
-      };
-    }
-    cartItems[product.tag].inCart += 1;
-  } else {
-    product.inCart = 1;
-    cartItems = {
-      [product.tag]: product,
-    };
-  }
-
-  localStorage.setItem("productInCart", JSON.stringify(cartItems));
-};
-
-const totalCost = (product) => {
-  let cartCost = localStorage.getItem("totalCost");
-  if (cartCost != null) {
-    cartCost = parseInt(cartCost);
-    localStorage.setItem("totalCost", cartCost + product.price);
-  } else {
-    localStorage.setItem("totalCost", product.price);
-  }
-};
-
-// add to cart js
-const displayCart = () => {
-  let cartItems = localStorage.getItem("productInCart");
-  cartItems = JSON.parse(cartItems);
-  console.log(cartItems);
-  let productsContainer = document.querySelector(".products");
-  let cartCost = localStorage.getItem("totalCost");
-  console.log(cartCost);
-  if (cartItems && productsContainer) {
-    productsContainer.innerHTML = " ";
-    console.log(cartItems);
-    Object.values(cartItems).map((item) => {
-      productsContainer.innerHTML += `
-          <div class="product">
-            <i class="ion-icon fas fa-times-circle delete-item delete-product"></i>
-            <img src="../images/${item.tag}.png" />
-            <span>${item.name}</span>
-          </div>
-            <div class="price">$${item.price}</div>
-            <div class="quantity">
-                <i class="ion-icon fas fa-arrow-alt-circle-left decrease"></i>
-                <span>${item.inCart}</span>
-                <i class="ion-icon fas fa-arrow-alt-circle-right increase"></i>
-            </div>
-            <div class="total">
-                $${item.inCart * item.price}
-            </div>
-        `;
+    const item = products.find((product)=> product.id === id);
+    cart.push({
+      ...item,
+      numberOfUnits: 1,
     });
-
-    productsContainer.innerHTML += `
-            <div class="basketTotalContainer">
-              <h4 class="basketTotalTitle">Total Price</h4>
-              <h4 name="totalPay" class="basketTotal">$${Math.round(
-                cartCost
-              )},00</h4>
-            </div>
-        `;
   }
-};
-
-oncartLoad();
-displayCart();
-
-var deleteProducts = document.querySelectorAll(".delete-product");
-console.log(deleteProducts);
-for(var i = 0; i<deleteProducts.length; i++){
-  deleteProducts[i].addEventListener("click", (event)=>{
-    var buttonClicked = event.target;
-    buttonClicked.parentElement.parentElement.remove();
-    let productNumbers = parseInt(localStorage.getItem("cartNumber"));
-    localStorage.setItem("cartNumber", productNumbers - 1);
-  })
+  updateCart();
 }
 
+
+function updateCart(){
+  // renderCartItems();
+  // renderSubtotal();
+}
+
+function renderCartItems(){
+  cart.forEach((item)=>{
+    cartItems.innerHTML += `
+    <div class="cart-item">
+    <div class="item-info" onclick="removeItemFromCart(${item.id})">
+        <img src="${item.imgName}" alt="${item.name}">
+        <h4>${item.name}</h4>
+    </div>
+    <div class="unit-price">
+        <small>$</small>${item.price}
+    </div>
+    <div class="units">
+        <div class="btn minus" onclick="changeNumberOfUnits('minus', ${item.id})">-</div>
+        <div class="number">${item.numberOfUnits}</div>
+        <div class="btn plus" onclick="changeNumberOfUnits('plus', ${item.id})">+</div>           
+    </div>
+  </div>
+     `
+  })
+}
