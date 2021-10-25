@@ -53,13 +53,17 @@ let initWebRoutes = (app) => {
           customer: customer.id,
         });
       })
-      .then((charge) => {
-        res.redirect("/"); // If no error occurs
+      .then((charges) => {
+          res.redirect("/shopping-cart"); // If no error occurs
       })
       .catch((err) => {
-        res.send(err); // If some error occurs
+        res.redirect("/shopping-cart"); // If some error occurs
       });
   }); 
+
+  router.get("/admin", (req, res)=>{
+    res.redirect("https://search-2ca30.web.app");
+  })
 
   router.get("/forgot", registerController.getPageForgot);
 
